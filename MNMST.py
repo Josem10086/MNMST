@@ -25,7 +25,7 @@ def MNMST_representation(network_exp, network_spat, lamb=10, gamma=10, dim=150):
     max_mu = 1e4
 
     from network import softth, solve_l1l2
-
+    
     epoch_iter = trange(100)
     for epoch in epoch_iter:
         F1 = np.linalg.solve(a=B.T @ B, b=B.T @ W1)
@@ -73,9 +73,9 @@ def MNMST_representation(network_exp, network_spat, lamb=10, gamma=10, dim=150):
 
         epoch_iter.set_description(
             f"# Epoch {epoch}, loss: {total_loss.item():.3f}")
-
+    
     Z = 0.5 * (np.abs(Z) + np.abs(Z.T))
-    return Z
+    return Z, B
 
 
 def MNMST_representation_with_histology(network_his, network_exp, network_spat, lamb=10, gamma=10, dim=150):
